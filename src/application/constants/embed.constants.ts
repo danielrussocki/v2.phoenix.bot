@@ -1,0 +1,1 @@
+export const CAppSuccessColor = 0x1ac9c9

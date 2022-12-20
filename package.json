@@ -1,0 +1,34 @@
+{
+	"name": "v2.phoenix.bot",
+	"version": "1.0.0",
+	"main": "build/bot.js",
+	"license": "MIT",
+	"_moduleAliases": {
+		"@app": "build/application"
+	},
+	"devDependencies": {
+		"@types/lodash": "^4.14.191",
+		"eslint": "^8.29.0",
+		"nodemon": "^2.0.20",
+		"typescript": "^4.9.3"
+	},
+	"scripts": {
+		"start": "node build/bot.js",
+		"build": "npx tsc",
+		"watch": "npx tsc -w",
+		"load": "node build/deploy-commands.js",
+		"dev": "nodemon build/bot.js"
+	},
+	"dependencies": {
+		"@discordjs/builders": "^1.4.0",
+		"@typescript-eslint/eslint-plugin": "^5.45.1",
+		"@typescript-eslint/parser": "^5.45.1",
+		"discord.js": "^14.7.1",
+		"dotenv": "^16.0.3",
+		"lodash": "^4.17.21",
+		"module-alias": "^2.2.2",
+		"mongodb": "^4.12.1",
+		"mongoose": "^6.8.0",
+		"winston": "^3.8.2"
+	}
+}
