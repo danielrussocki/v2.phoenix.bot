@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"main": "build/bot.js",
 	"license": "MIT",
+	"private": true,
 	"engines": {
 		"node": "16.x",
 		"yarn": "*"
