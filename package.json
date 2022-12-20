@@ -4,7 +4,9 @@
 	"main": "build/bot.js",
 	"license": "MIT",
 	"engines": {
-		"node": "16.x"
+		"node": "16.x",
+		"npm": "*",
+		"yarn": "*"
 	},
 	"_moduleAliases": {
 		"@app": "build/application"
