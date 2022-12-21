@@ -25,6 +25,9 @@ class AppTournamentController {
 	async confirm(id: string, userId: string) {
 		return await AppTournamentModel.updateOne({ _id: id, 'users.id': userId }, { $set: { 'users.$.confirmed': true } }, { new: true, runValidators: true })
 	}
+	async remove(id: string, userId: string) {
+		return await AppTournamentModel.updateOne({ _id: id, 'users.id': userId }, { $pull: { users: { id: userId } } })
+	}
 	async delete(id: string) {
 		return await AppTournamentModel.updateOne({ _id: id }, { active: false })
 	}

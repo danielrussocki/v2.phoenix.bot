@@ -99,6 +99,14 @@ export const execute: IExecute = async (interaction) => {
 		if (row.modifiedCount) return await interaction.reply({ embeds: [AppSimpleResponse('Usuario confirmado correctamente!')] })
 		throw new Error('Nada se actualizó')
 	}
+	if (interaction.options.getSubcommand() === 'remove') {
+		const id: string = interaction.options.getString('id', true)
+		const user: User = interaction.options.getUser('user', true)
+		const row = await appTournamentController.remove(id, user.id)
+		if (!row) throw new Error('El usuario no se encuentra en el torneo o el torneo no existe!')
+		if (row.modifiedCount) return await interaction.reply({ embeds: [AppSimpleResponse('Usuario removido correctamente!')] })
+		throw new Error('Nada se actualizó')
+	}
 	if (interaction.options.getSubcommand() === 'sort') {
 		const id: string = interaction.options.getString('id', true)
 		const groups: number = interaction.options.getInteger('groups', true)

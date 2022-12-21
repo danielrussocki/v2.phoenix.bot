@@ -70,6 +70,31 @@ export const data = new SlashCommandBuilder()
 	.addSubcommand(
 		(subcommand) =>
 			subcommand
+				.setName('remove')
+				.setDescription('remove participation')
+				.setNameLocalizations({ 'es-ES': 'remover' })
+				.setDescriptionLocalizations({ 'es-ES': 'remover participación de usuario' })
+				.addStringOption((option) =>
+					option
+						.setName('id')
+						.setDescription('Tournament id')
+						.setNameLocalizations({ 'es-ES': 'id' })
+						.setDescriptionLocalizations({ 'es-ES': 'ID del torneo' })
+						.setAutocomplete(true)
+						.setRequired(true),
+				)
+				.addUserOption((option) =>
+					option
+						.setName('user')
+						.setDescription('user')
+						.setNameLocalizations({ 'es-ES': 'usuario' })
+						.setDescriptionLocalizations({ 'es-ES': 'usuario' })
+						.setRequired(true),
+				)
+	)
+	.addSubcommand(
+		(subcommand) =>
+			subcommand
 				.setName('list')
 				.setDescription('list all tournaments')
 				.setNameLocalizations({ 'es-ES': 'listar' })
