@@ -65,6 +65,14 @@ export const data = new SlashCommandBuilder()
 						.setDescriptionLocalizations({ 'es-ES': 'ID del torneo' })
 						.setAutocomplete(true)
 						.setRequired(true),
+				)
+				.addUserOption((option) =>
+					option
+						.setName('user')
+						.setDescription('user to be confirmed')
+						.setNameLocalizations({ 'es-ES': 'user' })
+						.setDescriptionLocalizations({ 'es-ES': 'usuario por confirmar' })
+						.setRequired(true),
 				),
 	)
 	.addSubcommand(
@@ -90,7 +98,7 @@ export const data = new SlashCommandBuilder()
 						.setNameLocalizations({ 'es-ES': 'usuario' })
 						.setDescriptionLocalizations({ 'es-ES': 'usuario' })
 						.setRequired(true),
-				)
+				),
 	)
 	.addSubcommand(
 		(subcommand) =>

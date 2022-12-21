@@ -38,7 +38,13 @@ export const execute: IExecute = async (interaction) => {
 			if (confirmed) {
 				const [tournament] = await appTournamentController.findOneActiveAndConfirmed(id)
 				if (!tournament) throw new Error('No hay usuarios confirmados')
-				const description = `Participantes:\n${tournament.users?.map?.((v, i) => `${i + 1}.- <@${v.id}>`)?.join?.('\n')}`
+				const list = await Promise.all(
+					tournament.users?.map?.(async (v, i) => {
+						const user = await interaction?.client?.users?.fetch?.(v.id || '')
+						return `${i + 1}.- <@${v.id}> - \`${user.username}\``
+					}) || '',
+				)
+				const description = `Participantes:\n${list.join('\n')}`
 				return await interaction.reply({
 					embeds: [
 						AppCustomResponse({
@@ -93,8 +99,8 @@ export const execute: IExecute = async (interaction) => {
 	}
 	if (interaction.options.getSubcommand() === 'confirm') {
 		const id: string = interaction.options.getString('id', true)
-		const userId = interaction.member?.user.id || ''
-		const row = await appTournamentController.confirm(id, userId)
+		const user: User = interaction.options.getUser('user', true)
+		const row = await appTournamentController.confirm(id, user.id)
 		if (!row) throw new Error('El usuario no se encuentra en el torneo o el torneo no existe!')
 		if (row.modifiedCount) return await interaction.reply({ embeds: [AppSimpleResponse('Usuario confirmado correctamente!')] })
 		throw new Error('Nada se actualizó')
