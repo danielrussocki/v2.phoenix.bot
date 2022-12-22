@@ -20,7 +20,7 @@ class AppTournamentController {
 		return await AppTournamentModel.findOne({ _id: id, active: true })
 	}
 	async findOneActiveAndConfirmed(id: string) {
-		return await AppTournamentModel.aggregate<ITournament>([{ $unwind: '$users' }, { $match: { '_id': new ObjectId(id), 'users.confirmed': true } }, { $group: { _id: '$_id', users: { $push: '$users' } } }])
+		return await AppTournamentModel.aggregate<ITournament>([{ $unwind: '$users' }, { $match: { '_id': new ObjectId(id), active: true, 'users.confirmed': true } }, { $group: { _id: '$_id', users: { $push: '$users' } } }])
 	}
 	async confirm(id: string, userId: string) {
 		return await AppTournamentModel.updateOne({ _id: id, 'users.id': userId }, { $set: { 'users.$.confirmed': true } }, { new: true, runValidators: true })

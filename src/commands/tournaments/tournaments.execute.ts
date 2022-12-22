@@ -116,7 +116,7 @@ export const execute: IExecute = async (interaction) => {
 	if (interaction.options.getSubcommand() === 'sort') {
 		const id: string = interaction.options.getString('id', true)
 		const groups: number = interaction.options.getInteger('groups', true)
-		const tournament = await appTournamentController.findOneActive(id)
+		const [tournament] = await appTournamentController.findOneActiveAndConfirmed(id)
 		const tournamentCopy = appShuffleArray(tournament?.users || [])
 		const count: number = tournamentCopy?.length || 0
 
