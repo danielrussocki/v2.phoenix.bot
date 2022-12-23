@@ -29,7 +29,7 @@ async function execute(interaction: TInteraction) {
 		const command = interaction.client.commands?.get(interaction.commandName)
 
 		if (!command) {
-			console.error(`No command matching ${interaction.commandName} was found.`)
+			Winston.error(`No command matching ${interaction.commandName} was found.`)
 			return
 		}
 
@@ -37,7 +37,7 @@ async function execute(interaction: TInteraction) {
 			await command?.autocomplete?.(interaction)
 		}
 		catch (error) {
-			console.error(error)
+			Winston.error(error)
 		}
 	}
 	else if (interaction.isUserSelectMenu()) {
