@@ -6,6 +6,10 @@ export type IExecute = (interaction: ChatInputCommandInteraction<CacheType> & {
 	client: IDiscordClient;
 }) => unknown
 
+export type IChatInteraction = ChatInputCommandInteraction<CacheType> & {
+	client: IDiscordClient;
+}
+
 export interface ICommandCollection {
 	data: SlashCommandBuilder
 	execute: IExecute
