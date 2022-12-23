@@ -78,6 +78,89 @@ export const data = new SlashCommandBuilder()
 	.addSubcommand(
 		(subcommand) =>
 			subcommand
+				.setName('set-points')
+				.setDescription('set points to user')
+				.setNameLocalizations({ 'es-ES': 'establecer-puntos' })
+				.setDescriptionLocalizations({ 'es-ES': 'establecer puntos de usuario' })
+				.addStringOption((option) =>
+					option
+						.setName('id')
+						.setDescription('Tournament id')
+						.setNameLocalizations({ 'es-ES': 'id' })
+						.setDescriptionLocalizations({ 'es-ES': 'ID del torneo' })
+						.setAutocomplete(true)
+						.setRequired(true),
+				)
+				.addUserOption((option) =>
+					option
+						.setName('user')
+						.setDescription('user to be confirmed')
+						.setNameLocalizations({ 'es-ES': 'user' })
+						.setDescriptionLocalizations({ 'es-ES': 'usuario por confirmar' })
+						.setRequired(true),
+				)
+				.addIntegerOption((option) =>
+					option
+						.setName('points')
+						.setDescription('points to be set')
+						.setNameLocalizations({ 'es-ES': 'puntos' })
+						.setDescriptionLocalizations({ 'es-ES': 'puntos por ser establecidos al usuario' })
+						.setRequired(true),
+				),
+	)
+	.addSubcommand(
+		(subcommand) =>
+			subcommand
+				.setName('add-points')
+				.setDescription('add points to user')
+				.setNameLocalizations({ 'es-ES': 'agregar-puntos' })
+				.setDescriptionLocalizations({ 'es-ES': 'agregar puntos de usuario' })
+				.addStringOption((option) =>
+					option
+						.setName('id')
+						.setDescription('Tournament id')
+						.setNameLocalizations({ 'es-ES': 'id' })
+						.setDescriptionLocalizations({ 'es-ES': 'ID del torneo' })
+						.setAutocomplete(true)
+						.setRequired(true),
+				)
+				.addUserOption((option) =>
+					option
+						.setName('user')
+						.setDescription('user to be confirmed')
+						.setNameLocalizations({ 'es-ES': 'user' })
+						.setDescriptionLocalizations({ 'es-ES': 'usuario por confirmar' })
+						.setRequired(true),
+				)
+				.addIntegerOption((option) =>
+					option
+						.setName('points')
+						.setDescription('points to be added')
+						.setNameLocalizations({ 'es-ES': 'puntos' })
+						.setDescriptionLocalizations({ 'es-ES': 'puntos por ser añadidos al usuario' })
+						.setRequired(true),
+				),
+	)
+	.addSubcommand(
+		(subcommand) =>
+			subcommand
+				.setName('leaderboard')
+				.setDescription('tournament leaderboard')
+				.setNameLocalizations({ 'es-ES': 'tabla-posiciones' })
+				.setDescriptionLocalizations({ 'es-ES': 'tabla de posiciones de un torneo' })
+				.addStringOption((option) =>
+					option
+						.setName('id')
+						.setDescription('Tournament id')
+						.setNameLocalizations({ 'es-ES': 'id' })
+						.setDescriptionLocalizations({ 'es-ES': 'ID del torneo' })
+						.setAutocomplete(true)
+						.setRequired(true),
+				),
+	)
+	.addSubcommand(
+		(subcommand) =>
+			subcommand
 				.setName('remove')
 				.setDescription('remove participation')
 				.setNameLocalizations({ 'es-ES': 'remover' })

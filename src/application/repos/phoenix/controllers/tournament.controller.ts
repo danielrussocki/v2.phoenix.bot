@@ -25,6 +25,15 @@ class AppTournamentController {
 	async confirm(id: string, userId: string) {
 		return await AppTournamentModel.updateOne({ _id: id, 'users.id': userId }, { $set: { 'users.$.confirmed': true } }, { new: true, runValidators: true })
 	}
+	async setPoints(id: string, userId: string, points: number) {
+		return await AppTournamentModel.updateOne({ _id: id, 'users.id': userId }, { $set: { 'users.$.points': points } }, { new: true, runValidators: true })
+	}
+	async addPoints(id: string, userId: string, points: number) {
+		return await AppTournamentModel.updateOne({ _id: id, 'users.id': userId }, { $inc: { 'users.$.points': points } }, { new: true, runValidators: true })
+	}
+	async leaderboard(id: string) {
+		return await AppTournamentModel.aggregate<ITournament>([{ $unwind: '$users' }, { $match: { '_id': new ObjectId(id), active: true, 'users.confirmed': true } }, { $sort: { 'users.points': -1 } }, { $group: { _id: '$_id', users: { $push: '$users' } } }])
+	}
 	async remove(id: string, userId: string) {
 		return await AppTournamentModel.updateOne({ _id: id, 'users.id': userId }, { $pull: { users: { id: userId } } })
 	}

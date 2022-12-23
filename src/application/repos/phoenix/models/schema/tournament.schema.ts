@@ -14,6 +14,10 @@ export const AppTournamentSchema = new Schema<ITournament, UserTournamentType>({
 	description: { type: String, required: true },
 	active: { type: Boolean, default: true },
 	users: [
-		new Schema<IUserTournament>({ id: { type: String, unique: true }, confirmed: { type: Boolean, default: false } }),
+		new Schema<IUserTournament>({
+			id: { type: String, unique: true },
+			confirmed: { type: Boolean, default: false },
+			points: { type: Number, default: 0 },
+		}),
 	],
 })
